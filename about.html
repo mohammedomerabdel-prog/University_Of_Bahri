@@ -3,230 +3,394 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>نبذة عن الكلية - كلية العلوم الإدارية</title>
+  <title>نبذة عن الكلية والجامعة - منصة المعين</title>
   <style>
     :root {
-      --primary: #0b1f3a;
-      --primary-light: #1a3a68;
-      --accent: #f39c12;
-      --bg: #f4f6f9;
-      --card-bg: #ffffff;
-      --text: #1e293b;
-      --text-muted: #64748b;
-      --border: #edf2f7;
-      --shadow: 0 4px 20px rgba(0, 0, 0, 0.06);
+      --primary: #0f172a;
+      --primary2: #1e293b;
+      --accent: #2563eb;
+      --accent-hover: #1d4ed8;
+      --blue-light: #dbeafe;
+      --white: #ffffff;
+      --muted: #64748b;
+      --border: #e2e8f0;
+      --shadow: 0 10px 25px -5px rgba(15,23,42,.08), 0 8px 10px -6px rgba(15,23,42,.04);
     }
 
     body.dark-mode {
+      --primary: #3b82f6;
+      --primary2: #60a5fa;
       --bg: #0f172a;
       --card-bg: #1e293b;
-      --text: #f8fafc;
-      --text-muted: #94a3b8;
+      --text: #f1f5f9;
+      --muted: #94a3b8;
       --border: #334155;
-      --shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+      --shadow: 0 10px 25px -5px rgba(0,0,0,.5);
     }
 
     * {
       box-sizing: border-box;
       margin: 0;
       padding: 0;
-      font-family: system-ui, -apple-system, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     }
 
     body {
-      background-color: var(--bg);
-      color: var(--text);
+      background-color: #f8fafc;
+      color: #1e293b;
       direction: rtl;
+      line-height: 1.8;
       padding-bottom: 50px;
+      transition: background .3s ease, color .3s ease;
     }
 
     .navbar {
-      background: linear-gradient(135deg, #0b1f3a, #1a3a68);
-      padding: 18px 20px;
+      background: linear-gradient(135deg, #0f172a 0%, #1e293b 50%, #3b82f6 100%);
+      padding: 18px 25px;
       color: #ffffff;
-      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+      box-shadow: 0 4px 20px rgba(15,23,42,.05);
       position: sticky;
       top: 0;
       z-index: 100;
       display: flex;
       justify-content: space-between;
       align-items: center;
+      border-bottom: 1px solid var(--border);
     }
 
     .brand {
-      font-size: 16px;
-      font-weight: 700;
+      font-size: 18px;
+      font-weight: 800;
       color: #ffffff;
       text-decoration: none;
     }
 
     .back-btn {
       background: rgba(255, 255, 255, 0.15);
+      border: 1px solid rgba(255, 255, 255, 0.3);
       color: #ffffff;
-      padding: 6px 12px;
-      border-radius: 8px;
+      padding: 8px 16px;
+      border-radius: 12px;
       text-decoration: none;
-      font-size: 12px;
+      font-size: 13px;
       font-weight: 700;
+      backdrop-filter: blur(5px);
       transition: background 0.2s;
     }
 
     .back-btn:hover {
-      background: rgba(255, 255, 255, 0.25);
+      background: rgba(255, 255, 255, 0.3);
     }
 
     .container {
-      max-width: 650px;
-      margin: 20px auto;
+      max-width: 800px;
+      margin: 30px auto;
       padding: 0 15px;
       display: flex;
       flex-direction: column;
-      gap: 20px;
+      gap: 22px;
     }
 
     .card {
-      background: var(--card-bg);
-      border-radius: 16px;
-      padding: 22px;
+      background: var(--white);
+      border-radius: 22px;
+      padding: 30px 25px;
       box-shadow: var(--shadow);
       border: 1px solid var(--border);
       line-height: 1.8;
+      transition: background .3s ease;
     }
 
     .card-header {
-      font-size: 17px;
-      font-weight: 700;
+      font-size: 20px;
+      font-weight: 800;
       margin-bottom: 15px;
-      padding-bottom: 10px;
+      padding-bottom: 12px;
       border-bottom: 2px solid var(--border);
-      color: #0b1f3a;
+      color: #0f172a;
       display: flex;
       align-items: center;
-      gap: 8px;
+      gap: 10px;
     }
 
     body.dark-mode .card-header {
-      color: var(--accent);
+      color: #60a5fa;
     }
 
     p, li {
       margin-bottom: 10px;
-      font-size: 14px;
-      color: var(--text);
+      font-size: 15px;
+      color: #475569;
     }
 
-    ul {
-      margin-right: 20px;
-      margin-bottom: 12px;
+    body.dark-mode p, body.dark-mode li {
+      color: #cbd5e1;
     }
 
-    .departments-grid {
+    .stats-grid {
       display: grid;
-      grid-template-columns: 1fr 1fr;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 15px;
+      margin-top: 15px;
+    }
+
+    .stat-box {
+      background: #ffffff;
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      padding: 15px;
+      text-align: center;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.02);
+    }
+
+    .stat-box strong {
+      display: block;
+      font-size: 22px;
+      color: #2563eb;
+      margin-bottom: 4px;
+    }
+
+    .stat-box span {
+      font-size: 13px;
+      color: var(--muted);
+    }
+
+    .metrics-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
       gap: 12px;
       margin-top: 15px;
     }
 
+    .metric-item {
+      background: #ffffff;
+      border-right: 3px solid #2563eb;
+      padding: 10px 14px;
+      border-radius: 0 10px 10px 0;
+      font-size: 13.5px;
+      border-top: 1px solid var(--border);
+      border-bottom: 1px solid var(--border);
+      border-left: 1px solid var(--border);
+    }
+
+    .metric-item strong {
+      color: #0f172a;
+    }
+
+    body.dark-mode .metric-item {
+      background: #1e293b;
+    }
+
+    body.dark-mode .metric-item strong {
+      color: #93c5fd;
+    }
+
+    .action-btn-main {
+      background: linear-gradient(135deg, #2563eb 0%, #1d4ed8 100%);
+      color: #ffffff;
+      border: none;
+      border-radius: 14px;
+      padding: 14px 20px;
+      font-size: 15px;
+      font-weight: 700;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      margin-top: 10px;
+      transition: all 0.25s ease;
+      box-shadow: 0 4px 12px rgba(37,99,235,0.25);
+    }
+
+    .action-btn-main:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 6px 18px rgba(37,99,235,0.35);
+    }
+
+    .departments-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 15px;
+      margin-top: 20px;
+    }
+
     .dept-btn {
-      background: var(--bg);
+      background: #f1f5f9;
       border: 1px solid var(--border);
-      border-radius: 12px;
-      padding: 15px 12px;
-      color: var(--text);
+      border-radius: 16px;
+      padding: 18px 12px;
+      color: #0f172a;
       display: flex;
       flex-direction: column;
       align-items: center;
       justify-content: center;
-      gap: 6px;
-      font-size: 13px;
+      gap: 8px;
+      font-size: 14px;
       font-weight: 700;
       text-align: center;
-      transition: all 0.2s ease;
-      box-shadow: 0 2px 8px rgba(0,0,0,0.02);
+      transition: all 0.25s ease;
       cursor: pointer;
       width: 100%;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.02);
     }
 
     .dept-btn:hover {
-      border-color: var(--accent);
-      background: var(--card-bg);
-      transform: translateY(-2px);
+      border-color: #2563eb;
+      background: #ffffff;
+      transform: translateY(-3px);
+      box-shadow: 0 6px 15px rgba(37,99,235,0.15);
     }
 
     .dept-btn .icon {
-      font-size: 22px;
+      font-size: 26px;
     }
 
-    /* صناديق التفاصيل الموسعة الشاملة */
     .dept-content {
       display: none;
-      background: var(--bg);
+      background: #f8fafc;
       border: 1px solid var(--border);
-      border-radius: 12px;
-      padding: 20px;
+      border-radius: 16px;
+      padding: 22px;
       margin-top: 15px;
       animation: fadeIn 0.3s ease;
-      grid-column: span 2; /* لتغطية العرض بالكامل عند فتح الصندوق */
+      grid-column: span 3;
     }
 
     .dept-content h4 {
-      color: #0b1f3a;
-      font-size: 16px;
+      color: #0f172a;
+      font-size: 18px;
       margin-bottom: 14px;
-      border-bottom: 2px solid var(--accent);
+      border-bottom: 2px solid #2563eb;
       padding-bottom: 8px;
     }
 
     body.dark-mode .dept-content h4 {
-      color: var(--accent);
+      color: #60a5fa;
     }
 
     .section-title {
       font-weight: 700;
-      color: var(--primary-light);
-      margin-top: 12px;
-      margin-bottom: 4px;
+      color: #1e293b;
+      margin-top: 14px;
+      margin-bottom: 6px;
       display: flex;
       align-items: center;
-      gap: 5px;
+      gap: 6px;
+      font-size: 15px;
     }
 
     body.dark-mode .section-title {
-      color: #60a5fa;
+      color: #93c5fd;
     }
 
     .badge-box {
-      background: rgba(243, 156, 18, 0.1);
-      border-right: 4px solid var(--accent);
-      padding: 14px;
-      border-radius: 0 8px 8px 0;
-      margin: 15px 0;
-      font-size: 13.5px;
+      background: rgba(37, 99, 235, 0.08);
+      border-right: 4px solid #2563eb;
+      padding: 16px;
+      border-radius: 0 12px 12px 0;
+      margin: 18px 0;
+      font-size: 14px;
       line-height: 1.8;
+      color: #1e293b;
+    }
+
+    body.dark-mode .badge-box {
+      background: rgba(59, 130, 246, 0.15);
+      color: #e2e8f0;
     }
 
     @keyframes fadeIn {
       from { opacity: 0; transform: translateY(-5px); }
       to { opacity: 1; transform: translateY(0); }
     }
+
+    @media(max-width: 850px) {
+      .departments-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+      .dept-content {
+        grid-column: span 2;
+      }
+    }
+
+    @media(max-width: 550px) {
+      .departments-grid, .metrics-grid, .stats-grid {
+        grid-template-columns: 1fr;
+      }
+      .dept-content {
+        grid-column: span 1;
+      }
+    }
   </style>
 </head>
 <body>
 
   <header class="navbar">
-    <a href="index.html" class="brand">🏛️ نبذة عن الكلية</a>
+    <a href="index.html" class="brand">🏛️ نبذة عن الكلية والجامعة</a>
     <a href="index.html" class="back-btn">⬅ العودة للمنصة</a>
   </header>
 
   <main class="container">
 
+    <!-- مجموعة نبذة عن الجامعة والتصنيف كزر تفاعلي -->
+    <div class="card">
+      <div class="card-header">🌍 نبذة تعريفية عن جامعة بحري</div>
+      <p>
+        تأسست <strong>جامعة بحري</strong> كمنصة تعليمية تهدف إلى تقديم برامج تعليمية متنوعة[span_12](start_span)[span_12](end_span). تركز الجامعة على تطوير المهارات العملية والنظرية للطلاب، مما يتيح لهم التكيف مع متطلبات سوق العمل[span_13](start_span)[span_13](end_span). تسعى الجامعة لتعزيز البحث والمشاركة المجتمعية، مما يخلق بيئة تعليمية غنية[span_14](start_span)[span_14](end_span). تعمل الجامعة باستمرار على تحسين جودة التعليم وتطوير كفاءتها الأكاديمية والبحثية[span_15](start_span)[span_15](end_span).
+      </p>
+
+      <!-- زر عرض التصنيف المعتمد -->
+      <button class="action-btn-main" onclick="toggleRanking()">
+        <span>⭐ عرض التصنيف المعتمد (UniRanks 2027)</span>
+      </button>
+
+      <!-- صندوق تفاصيل التصنيف الموسع -->
+      <div id="uniranksDetails" class="dept-content">
+        <h4>⭐ التقرير التفصيلي لتصنيف UniRanks لجامعة بحري (2027)</h4>
+        <p>جامعة بحري حاصلة على حالة <strong>معترف بها وموثقة رسمياً</strong>[span_16](start_span)[span_16](end_span)[span_17](start_span)[span_17](end_span)[span_18](start_span)[span_18](end_span). وتتوزع نتائج تقييم الأداء والمؤشرات العامة كالتالي[span_19](start_span)[span_19](end_span)[span_20](start_span)[span_20](end_span):</p>
+        
+        <div class="stats-grid">
+          <div class="stat-box">
+            <strong>#5,589</strong>
+            <span>الترتيب العالمي[span_21](start_span)[span_21](end_span)[span_22](start_span)[span_22](end_span)</span>
+          </div>
+          <div class="stat-box">
+            <strong>45.09</strong>
+            <span>النتيجة الإجمالية (من 100)[span_23](start_span)[span_23](end_span)[span_24](start_span)[span_24](end_span)</span>
+          </div>
+          <div class="stat-box">
+            <strong>#200</strong>
+            <span>الترتيب الإقليمي (أفريقيا)[span_25](start_span)[span_25](end_span)[span_26](start_span)[span_26](end_span)</span>
+          </div>
+          <div class="stat-box">
+            <strong>#6</strong>
+            <span>الترتيب المحلي على مستوى الدولة[span_27](start_span)[span_27](end_span)[span_28](start_span)[span_28](end_span)</span>
+          </div>
+        </div>
+
+        <div class="section-title" style="margin-top: 20px;">📊 مؤشرات الأداء والأوزان النسبية (من 100):</div>
+        <div class="metrics-grid">
+          <div class="metric-item"><strong>الأداء الأكاديمي والبحثي:</strong> 45 / 100 (الوزن 15%)[span_29](start_span)[span_29](end_span)</div>
+          <div class="metric-item"><strong>رفاه الطلبة والمرافق:</strong> 47.5 / 100 (الوزن 15%)[span_30](start_span)[span_30](end_span)</div>
+          <div class="metric-item"><strong>جودة التعليم:</strong> 46 / 100 (الوزن 12%)[span_31](start_span)[span_31](end_span)</div>
+          <div class="metric-item"><strong>قابلية التوظيف والنجاح المهني:</strong> 44 / 100 (الوزن 12%)[span_32](start_span)[span_32](end_span)</div>
+          <div class="metric-item"><strong>تجربة الطلبة ورضاهم:</strong> 46 / 100 (الوزن 10%)[span_33](start_span)[span_33](end_span)</div>
+          <div class="metric-item"><strong>التأثير على الويب والحضور الرقمي:</strong> 44 / 100 (الوزن 10%)[span_34](start_span)[span_34](end_span)</div>
+          <div class="metric-item"><strong>الرقمنة والحرم الجامعي الذكي:</strong> 43.5 / 100 (الوزن 8%)[span_35](start_span)[span_35](end_span)</div>
+          <div class="metric-item"><strong>الملف المؤسسي والقدرة الاستيعابية:</strong> 45 / 100 (الوزن 5%)[span_36](start_span)[span_36](end_span)</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- كلية العلوم الإدارية -->
     <div class="card">
       <div class="card-header">📌 كلية العلوم الإدارية - جامعة بحري</div>
       <p>
-        تعتبر <strong>كلية العلوم الإدارية</strong> في <strong>جامعة بحري</strong> من الصروح الأكاديمية الرائدة التي تهدف إلى إعداد كوادر وطنية وإقليمية مؤهلة تأميلاً عالياً، وقادرة على إدارة المؤسسات بكفاءة واحترافية في قطاعات الأعمال، المال، والمصارف.
+        تعتبر <strong>كلية العلوم الإدارية</strong> من الصروح الأكاديمية الرائدة في الجامعة، والتي تهدف إلى تأهيل وإعداد قيادات وكوادر متخصصة ومؤهلة تأميلاً عالياً في مجالات إدارة الأعمال، المحاسبة، المال، والمصارف لتلبية احتياجات سوق العمل الإقليمي والمحلي.
       </p>
     </div>
 
+    <!-- الأقسام والتخصصات الاكاديمية (كاملة وبدون تعديل أو حذف) -->
     <div class="card">
       <div class="card-header">🎓 الأقسام والتخصصات الأكاديمية</div>
       <p>اختر التخصص المناسب للاطلاع على الدليل الشامل والمفصل لكل ما يخص طبيعة الدراسة، المقررات، الوظائف، والشهادات المهنية:</p>
@@ -305,7 +469,7 @@
           <p>تأهيل الطلاب للتخطيط الاستراتيجي وقراءة المستقبل، التعامل مع المشكلات الإدارية المعقدة وإيجاد حلول مبتكرة، وبناء شخصيات قيادية قادرة على إدارة فرق العمل بحماس ورفع الإنتاجية.</p>
 
           <div class="section-title">📚 أبرز المقررات الدراسية:</div>
-          <p>الإدارة الاستراتيجية، إعداد وتقييم دراسات الجدوى، سلوك المنظمات (Organizational Behavior)، إدارة الإنتاج والعمليات، ومبادئ التسويق وإدارة علاقات العملاء.</p>
+          <p>الإدارة الاستراتيجية، إعداد وتقييم دراسات الجدوى، سلوك المنظمات (Organizational Behavior), إدارة الإنتاج والعمليات، ومبادئ التسويق وإدارة علاقات العملاء.</p>
 
           <div class="section-title">🎓 الشهادات المهنية الداعمة للتوظيف:</div>
           <p>مدير مشاريع محترف (PMP)، وشهادات إدارة الأعمال الدولية.</p>
@@ -324,7 +488,7 @@
           <h4>🎯 الدليل الشامل لتخصص التسويق</h4>
           
           <div class="section-title">📌 نبذة تعريفية شاملة عن التخصص:</div>
-          <p>يُعد تخصص التسويق المحرك الأساسي لنمو وتوسع أي نشاط تجاري؛ حيث يركز على فهم سلوك المستهلك، دراسة احتياجات الأسواق بدقة، وابتكار واستراتيجيات ترويجية وبيعيه فعالة لربط المنتجات أو الخدمات بالجمهور المستهدف وبناء علاقات مستدامة ومربحة مع العملاء.</p>
+          <p>يُعد تخصص التسويق المحرك الأساسي لنمو وتوسع أي نشاط تجاري؛ حيث يركز على فهم سلوك المستهلك، دراسة احتياجات الأسواق بدقة، وابتكار استراتيجيات ترويجية وبيعيه فعالة لربط المنتجات أو الخدمات بالجمهور المستهدف وبناء علاقات مستدامة ومربحة مع العملاء.</p>
 
           <div class="section-title">🎯 أهداف التخصص ومخرجاته:</div>
           <p>تطوير مهارات التفكير الإبداعي والتحليلي لفهم الأسواق، تصميم الحملات التسويقية التقليدية والرقمية المتكاملة، وإدارة العلامات التجارية (Branding) بكفاءة عالية لتعزيز الحصة السوقية.</p>
@@ -490,7 +654,7 @@
             * إداري حكومي وموظف بالخدمة المدنية في الوزارات والهيئات.<br>
             * باحث إداري وسياسات لمشاركة في إعداد الدراسات التنظيمية والخدمية.<br>
             * منسق مشاريع تنموية ومحلية لخدمة المجتمع والمواطنين.<br>
-            * مسؤل إداري في المنظمات غير الربحية والإنسانية (NGOs).
+            * مسؤول إداري في المنظمات غير الربحية والإنسانية (NGOs).
           </div>
         </div>
 
@@ -501,12 +665,24 @@
   </main>
 
   <script>
+    // دالة فتح وإغلاق زر التصنيف
+    function toggleRanking() {
+      const box = document.getElementById('uniranksDetails');
+      if (box.style.display === 'block') {
+        box.style.display = 'none';
+      } else {
+        box.style.display = 'block';
+        box.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+      }
+    }
+
+    // دالة فتح وإغلاق الأقسام والتخصصات
     function toggleDept(id) {
       const box = document.getElementById(id);
-      
       const allBoxes = document.querySelectorAll('.dept-content');
+      
       allBoxes.forEach(b => {
-        if (b.id !== id) b.style.display = 'none';
+        if (b.id !== id && b.id !== 'uniranksDetails') b.style.display = 'none';
       });
 
       if (box.style.display === 'block') {
