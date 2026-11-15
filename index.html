@@ -1181,6 +1181,16 @@ footer{
 
             </a>
 
+            <a class="quick-action searchable-item"
+               href="https://t.me/AlRayyanEduSD"
+               target="_blank"
+               rel="noopener noreferrer">
+
+                <span>✈️</span>
+                قناة التلغرام
+
+            </a>
+
         </div>
 
     </div>
@@ -2046,7 +2056,7 @@ footer{
 
 document.addEventListener("DOMContentLoaded", function(){
 
-    const ADMIN_PASS = "023024";
+    // إدارة المسؤولين انتقلت إلى admin.html مع تسجيل دخول Supabase.
 
     /* ================================
        الخبر والملفات
@@ -2118,9 +2128,7 @@ document.addEventListener("DOMContentLoaded", function(){
         document.getElementById("adminControlsPanel");
 
     openAdminBtn.addEventListener("click",function(){
-
-        adminModal.style.display = "flex";
-
+        window.location.href = "admin.html";
     });
 
     closeAdminModal.addEventListener("click",function(){
@@ -2129,30 +2137,7 @@ document.addEventListener("DOMContentLoaded", function(){
 
     });
 
-    loginAdminBtn.addEventListener("click",function(){
-
-        const pass =
-            document.getElementById(
-                "adminPasswordInput"
-            ).value;
-
-        if(pass === ADMIN_PASS){
-
-            adminLoginForm.style.display = "none";
-
-            adminControlsPanel.style.display = "block";
-
-            alert(
-                "تم تسجيل الدخول بنجاح! يمكنك الآن تعديل المنصة."
-            );
-
-        }else{
-
-            alert("كلمة السر غير صحيحة!");
-
-        }
-
-    });
+    // تم تعطيل تسجيل الدخول القديم. استخدم admin.html فقط.
 
     /* ================================
        حفظ الخبر
