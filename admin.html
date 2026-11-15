@@ -1,0 +1,91 @@
+<!doctype html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>لوحة إدارة النخبة | جامعة بحري</title>
+<style>
+:root{font-family:Tahoma,Arial,sans-serif;color:#172033;background:#f3f6fb}*{box-sizing:border-box}body{margin:0}header{background:#102b4e;color:#fff;padding:22px max(18px,calc((100% - 1100px)/2));display:flex;justify-content:space-between;align-items:center;gap:12px;flex-wrap:wrap}header a{color:#fff}main{max-width:1100px;margin:28px auto;padding:0 16px}.panel{background:#fff;border:1px solid #e1e7ef;border-radius:16px;padding:22px;margin-bottom:18px;box-shadow:0 5px 20px #152b4810}h1,h2{margin-top:0}.muted{color:#637187;font-size:14px}.hidden{display:none!important}label{display:block;margin:12px 0 6px;font-weight:bold}input,textarea,select{width:100%;padding:12px;border:1px solid #cbd5e1;border-radius:9px;font:inherit;background:#fff}textarea{min-height:110px}button,.btn{border:0;border-radius:9px;padding:11px 17px;background:#1769aa;color:white;font:inherit;cursor:pointer;text-decoration:none;display:inline-block}button.secondary{background:#e8eef6;color:#17324f}button.danger{background:#a52d35}.row{display:flex;gap:10px;flex-wrap:wrap;align-items:center}.row>*{flex:1}.nav{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:16px}.nav button{background:#e8eef6;color:#17324f}.nav button.active{background:#1769aa;color:#fff}.item{border:1px solid #e1e7ef;padding:14px;border-radius:10px;margin:10px 0}.item h3{margin:0 0 7px}.status{font-size:13px;color:#65748b}.notice{background:#fff8df;border:1px solid #f1d98b;padding:12px;border-radius:10px;margin:12px 0}.error{color:#a52d35}.success{color:#147443}a{color:#1769aa}
+</style>
+</head>
+<body>
+<header><div><strong>النخبة — جامعة بحري</strong><div class="muted" style="color:#dce8f6">لوحة الإدارة المركزية</div></div><a href="index.html">العودة إلى المنصة ←</a></header>
+<main>
+<section id="loginPanel" class="panel">
+<h1>دخول المسؤولين</h1><p class="muted">استخدم البريد الإلكتروني وكلمة المرور المعتمدين من مدير المنصة.</p>
+<div class="notice">هذه اللوحة مرتبطة بمشروع University Platform المستقل. لا تستخدم بيانات مشروع النتائج.</div>
+<label>البريد الإلكتروني</label><input id="email" type="email" autocomplete="username" placeholder="admin@example.com">
+<label>كلمة المرور</label><input id="password" type="password" autocomplete="current-password">
+<p id="loginMessage" class="muted" role="status"></p><button id="loginBtn">تسجيل الدخول</button>
+</section>
+<section id="appPanel" class="hidden">
+<div class="panel row"><div><h1>مرحباً بك في لوحة الإدارة</h1><div id="whoami" class="muted"></div></div><button id="logoutBtn" class="secondary">تسجيل الخروج</button></div>
+<div class="nav">
+<button class="active" data-tab="content">إدارة المحتوى</button><button data-tab="admins">المسؤولون والصلاحيات</button><button data-tab="audit">سجل العمليات</button>
+</div>
+<section id="tab-content" class="panel">
+<h2>إضافة محتوى جديد</h2>
+<form id="contentForm">
+<label>نوع المحتوى</label><select id="contentType"><option value="lecture">محاضرة</option><option value="specialty">تخصص</option><option value="course">مادة دراسية</option><option value="announcement">إعلان / خبر</option><option value="exam">امتحان سابق</option><option value="assignment">واجب / تكليف</option><option value="notification">إشعار</option><option value="timetable">جدول دراسي</option><option value="suggestion">اقتراح / شكوى</option></select>
+<label>العنوان</label><input id="title" required maxlength="180">
+<div class="row"><div><label>التخصص</label><input id="specialty" placeholder="اختياري"></div><div><label>المادة</label><input id="course" placeholder="اختياري"></div></div>
+<label>التفاصيل</label><textarea id="body" placeholder="اكتب وصف المحتوى أو تفاصيله"></textarea>
+<label>رابط الملف أو المحاضرة (اختياري)</label><input id="externalUrl" type="url" placeholder="https://...">
+<label>حالة النشر</label><select id="status"><option value="draft">مسودة</option><option value="published">نشر مباشرة</option></select>
+<p id="contentMessage" class="muted"></p><button type="submit">حفظ المحتوى</button>
+</form>
+<hr><h2>المحتوى المنشور والمسودات</h2><div id="contentList" class="muted">جارٍ تحميل المحتوى…</div>
+</section>
+<section id="tab-admins" class="panel hidden"><h2>المسؤولون والصلاحيات</h2><p class="notice">إضافة مستخدم Auth جديد أو إرسال دعوة تتطلب وظيفة خادمية آمنة بصلاحية إدارة المستخدمين. لن ننشئ حسابات من المتصفح أو نكشف مفتاح service_role. حالياً يمكنك مراجعة المسؤولين الحاليين وتفعيلهم أو إيقافهم من قاعدة البيانات، وسيتم إكمال دعوات المسؤولين عبر Edge Function آمنة.</p><div id="adminsList" class="muted">جارٍ التحميل…</div></section>
+<section id="tab-audit" class="panel hidden"><h2>سجل عمليات الإدارة</h2><div id="auditList" class="muted">جارٍ التحميل…</div></section>
+</section>
+</main>
+<script type="module">
+import { createClient } from 'https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/+esm';
+import { SUPABASE_URL, SUPABASE_ANON_KEY } from './platform-config.js';
+const $=id=>document.getElementById(id);
+const loginPanel=$('loginPanel'), appPanel=$('appPanel');
+let supabase=null, currentUser=null;
+const say=(id,msg,cls='muted')=>{const el=$(id);el.textContent=msg;el.className=cls;};
+function configReady(){return SUPABASE_URL.startsWith('https://')&&SUPABASE_ANON_KEY.length>20&&!SUPABASE_URL.includes('YOUR_')&&!SUPABASE_ANON_KEY.includes('YOUR_');}
+if(configReady()) supabase=createClient(SUPABASE_URL,SUPABASE_ANON_KEY);
+else say('loginMessage','يلزم إعداد رابط مشروع University Platform ومفتاح Publishable/anon في platform-config.js بعد إنشاء المشروع الجديد.','error');
+$('loginBtn').addEventListener('click',async()=>{
+ if(!supabase)return;
+ say('loginMessage','جارٍ التحقق…');
+ const {data,error}=await supabase.auth.signInWithPassword({email:$('email').value.trim(),password:$('password').value});
+ if(error){say('loginMessage','تعذر تسجيل الدخول: '+error.message,'error');return;}
+ currentUser=data.user; await showApp();
+});
+async function showApp(){
+ const {data:admin,error}=await supabase.from('platform_admins').select('display_name,role,is_active,permissions').eq('user_id',currentUser.id).maybeSingle();
+ if(error||!admin||!admin.is_active){await supabase.auth.signOut();say('loginMessage','هذا الحساب غير مضاف كمسؤول نشط. تواصل مع مدير المنصة.','error');return;}
+ loginPanel.classList.add('hidden');appPanel.classList.remove('hidden');
+ $('whoami').textContent=(admin.display_name||currentUser.email)+' — '+admin.role;
+ await Promise.all([loadContent(),loadAdmins(),loadAudit()]);
+}
+$('logoutBtn').addEventListener('click',async()=>{await supabase.auth.signOut();location.reload();});
+document.querySelectorAll('[data-tab]').forEach(btn=>btn.addEventListener('click',()=>{
+ document.querySelectorAll('[data-tab]').forEach(b=>b.classList.toggle('active',b===btn));
+ ['content','admins','audit'].forEach(t=>$('tab-'+t).classList.toggle('hidden',t!==btn.dataset.tab));
+}));
+$('contentForm').addEventListener('submit',async e=>{
+ e.preventDefault();if(!supabase)return;say('contentMessage','جارٍ الحفظ…');
+ const payload={content_type:$('contentType').value,title:$('title').value.trim(),body:$('body').value.trim(),specialty:$('specialty').value.trim()||null,course:$('course').value.trim()||null,external_url:$('externalUrl').value.trim()||null,status:$('status').value,published_at:$('status').value==='published'?new Date().toISOString():null,created_by:currentUser.id};
+ const {error}=await supabase.from('platform_content').insert(payload);
+ if(error){say('contentMessage','فشل الحفظ: '+error.message,'error');return;}
+ $('contentForm').reset();say('contentMessage','تم حفظ المحتوى بنجاح.','success');await loadContent();
+});
+async function loadContent(){
+ const {data,error}=await supabase.from('platform_content').select('id,title,content_type,status,created_at').order('created_at',{ascending:false}).limit(100);
+ if(error){$('contentList').textContent=error.message;return;}
+ $('contentList').innerHTML='';
+ (data||[]).forEach(x=>{const d=document.createElement('div');d.className='item';const h=document.createElement('h3');h.textContent=x.title;const p=document.createElement('div');p.className='status';p.textContent=x.content_type+' · '+x.status+' · '+new Date(x.created_at).toLocaleString('ar');const row=document.createElement('div');row.className='row';const toggle=document.createElement('button');toggle.className='secondary';toggle.textContent=x.status==='published'?'إلغاء النشر':'نشر';toggle.onclick=()=>changeStatus(x.id,x.status==='published'?'draft':'published');const del=document.createElement('button');del.className='danger';del.textContent='حذف';del.onclick=()=>deleteContent(x.id);row.append(toggle,del);d.append(h,p,row);$('contentList').append(d);});
+ if(!data?.length)$('contentList').textContent='لا يوجد محتوى حتى الآن.';
+}
+async function changeStatus(id,status){const {error}=await supabase.from('platform_content').update({status,published_at:status==='published'?new Date().toISOString():null}).eq('id',id);if(error)alert(error.message);else await loadContent();}
+async function deleteContent(id){if(!confirm('هل تريد حذف هذا المحتوى؟'))return;const {error}=await supabase.from('platform_content').delete().eq('id',id);if(error)alert(error.message);else await loadContent();}
+async function loadAdmins(){const {data,error}=await supabase.from('platform_admins').select('display_name,role,is_active,created_at').order('created_at',{ascending:false});$('adminsList').textContent=error?error.message:(data||[]).map(a=>(a.display_name||'مسؤول')+' — '+a.role+' — '+(a.is_active?'نشط':'موقوف')).join('\n')||'لا يوجد مسؤولون';}
+async function loadAudit(){const {data,error}=await supabase.from('platform_audit_logs').select('action,table_name,record_id,created_at').order('created_at',{ascending:false}).limit(50);$('auditList').textContent=error?error.message:(data||[]).map(a=>a.action+' — '+a.table_name+' — '+new Date(a.created_at).toLocaleString('ar')).join('\n')||'لا توجد عمليات مسجلة';}
+supabase?.auth.onAuthStateChange(async(_event,session)=>{if(session?.user&&!currentUser){currentUser=session.user;await showApp();}});
+</script>
+</body></html>
